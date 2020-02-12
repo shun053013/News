@@ -52,11 +52,11 @@
 <script>
 import axios from "axios";
 
-const NYTBaseUrl = "https://api.nytimes.com/svc/topstories/v2/";
+const BaseUrl = "https://api.nytimes.com/svc/topstories/v2/";
 const ApiKey = "fnjl2hJ7geAGq5FWQpoCAlRU5KC195Mv";
 
 function buildUrl(url) {
-  return NYTBaseUrl + url + ".json?api-key=" + ApiKey;
+  return BaseUrl + url + ".json?api-key=" + ApiKey;
 }
 const SECTIONS =
   "home, arts, automobiles, books, business, fashion, food, health, insider, magazine, movies, national, nyregion, obituaries, opinion, politics, realestate, science, sports, sundayreview, technology, theater, tmagazine, travel, upshot, world";
