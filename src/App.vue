@@ -1,24 +1,51 @@
 <template>
-  <div>
+  <v-app >
+    <v-app-bar app color="primary" dark>
+      <v-app-bar-nav-icon @click.stop="toggleSideMenu"></v-app-bar-nav-icon>
+      <v-toolbar-title>VueNews</v-toolbar-title>
+      <div class="d-flex align-center">
+        <v-img
+          alt="Vuetify Logo"
+          class="shrink mr-2"
+          contain
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          transition="scale-transition"
+          width="40"
+        />
+       
 
-    <router-view></router-view>
-    
-
-  </div>
-    
   
+      </div>
 
+      <v-spacer></v-spacer>
+    </v-app-bar>
+    <v-content>
+      <router-view />
+    <SideNavi />
+    </v-content>
 
+  </v-app>
 </template>
 
-<style>
+<script>
+import SideNavi from "./components/SideNavi";
+import {mapActions} from 'vuex'
 
 
-body{
+export default {
+  name: "App",
+  components: {
+    SideNavi
+  },
   
-  background: #304352;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #d7d2cc, #304352);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #d7d2cc, #304352); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
 
-</style>
+  data: () => ({
+
+  }),
+
+ methods:{
+   ...mapActions(['toggleSideMenu'])
+ }
+};
+</script>
+

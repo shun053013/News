@@ -1,8 +1,10 @@
 <template>
-  <div class="container" >
-    <h1 class="text-center">VueNews</h1>
+  <div class="container" id="app">
+    <Header />
+    <SearchByCategory v-on:category-event="searchByCategory"></SearchByCategory>
+    <SideNavi></SideNavi>
 
-    <h5 class="text">Filter by Category</h5>
+    <!-- <h5 class="text">Filter by Category</h5>
     <form>
       <div class="row">
         <div class="large-6 columns">
@@ -20,7 +22,7 @@
           ><br /><br />
         </div>
       </div>
-    </form>
+    </form> -->
 
     <div class="container">
       <div class="row row-cols-4">
@@ -51,6 +53,9 @@
 
 <script>
 import axios from "axios";
+import Header from "@/components/Header.vue";
+import SearchByCategory from "@/components/SearchByCategory.vue";
+import SideNavi from "@/components/SideNavi.vue";
 
 const BaseUrl = "https://api.nytimes.com/svc/topstories/v2/";
 const ApiKey = "fnjl2hJ7geAGq5FWQpoCAlRU5KC195Mv";
@@ -58,16 +63,22 @@ const ApiKey = "fnjl2hJ7geAGq5FWQpoCAlRU5KC195Mv";
 function buildUrl(url) {
   return BaseUrl + url + ".json?api-key=" + ApiKey;
 }
-const SECTIONS =
-  "home, arts, automobiles, books, business, fashion, food, health, insider, magazine, movies, national, nyregion, obituaries, opinion, politics, realestate, science, sports, sundayreview, technology, theater, tmagazine, travel, upshot, world";
+// const SECTIONS =
+//   "home, arts, automobiles, books, business, fashion, food, health, insider, magazine, movies, national, nyregion, obituaries, opinion, politics, realestate, science, sports, sundayreview, technology, theater, tmagazine, travel, upshot, world";
 
 export default {
   
+  components: {
+    Header,
+    SearchByCategory,
+    SideNavi
+  },
+
   data() {
     return {
       posts: [],
-      sections: SECTIONS.split(", "),
-      section: "home"
+      // sections: SECTIONS.split(", "),
+      section: ""
     };
   },
   mounted() {
@@ -78,12 +89,11 @@ export default {
       .then(response => {
         this.posts = response.data.results;
       });
-
-    
   },
   methods: {
-    getPosts(section) {
+    searchByCategory(section) {
       let url = buildUrl(section);
+      console.log(url)
       axios
         .get(url)
         .then(response => {
@@ -92,14 +102,31 @@ export default {
         .catch(error => {
           console.log(error);
         });
+        console.log(this.posts)
     }
+    
   }
 };
-
-
 </script>
 
-<style> 
+<style scope>
+
+.v-content__wrap{
+  background: #304352; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #d7d2cc,
+    #304352
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #d7d2cc,
+    #304352
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+
 .card-img-top {
   text-align: "center";
 }
@@ -109,7 +136,8 @@ export default {
 .texr-center {
   left: 50px;
 }
-body{
-   background-color: #FFE4B5;
-}
+
+
 </style>
+
+
