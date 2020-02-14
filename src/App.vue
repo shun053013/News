@@ -30,12 +30,27 @@
 <script>
 import SideNavi from "./components/SideNavi";
 import {mapActions} from 'vuex'
+import firebase from 'firebase'
 
 
 export default {
   name: "App",
   components: {
     SideNavi
+  },
+  created(){
+    firebase.auth().onAuthStateChanged(user=>{
+      if(user){
+        this.setLoginUser(user)
+        if (this.$router.currentRoute.name === 'login') {
+          this.$router.push({ name: 'home' }, () => {})
+        }
+      } else {
+        this.deleteLoginUser()
+        this.$router.push({ name: 'login' }, () => {})
+      }
+      
+    })
   },
   
 
@@ -44,7 +59,7 @@ export default {
   }),
 
  methods:{
-   ...mapActions(['toggleSideMenu'])
+   ...mapActions(['toggleSideMenu','setLoginUser'])
  }
 };
 </script>

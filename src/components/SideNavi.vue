@@ -48,8 +48,8 @@ export default {
     return {
       drawer: null,
       items: [
-        { title: "login", icon: "Login" ,link:{name:"home"}},
-        { title: "News", icon: "News" ,link:{name:"about" }}
+        { title: "login", icon: "Login" ,link:{name:"login"}},
+        { title: "News", icon: "News" ,link:{name:"home" }}
       ]
     };
   }
