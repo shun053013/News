@@ -16,6 +16,9 @@ export default new Vuex.Store({
         },
         setLoginUser(state,user){
             state.login_user=user
+        },
+        deleteLoginUser(state){
+            state.login_user = null
         }
         
     },
@@ -29,7 +32,18 @@ export default new Vuex.Store({
         },
         setLoginUser({commit},user){
             commit('setLoginUser',user)
+        },
+        logout(){
+            firebase.auth().signOut()
+        },
+        deleteLoginUser({commit},){
+            commit('deleteLoginUser')
+
         }
         
+    },
+    getters:{
+        userName:state => state.login_user ? state.login_user.displayName :'',
+        photoURL:state => state.login_user ? state.login_user.photoURL:''
     }
 })

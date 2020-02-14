@@ -3,6 +3,9 @@
     <v-app-bar app color="primary" dark>
       <v-app-bar-nav-icon @click.stop="toggleSideMenu"></v-app-bar-nav-icon>
       <v-toolbar-title>VueNews</v-toolbar-title>
+      <v-toolbar-items v-if="$store.state.login_user">
+        <v-btn text @click="logout">ログアウト</v-btn>
+      </v-toolbar-items>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -59,7 +62,7 @@ export default {
   }),
 
  methods:{
-   ...mapActions(['toggleSideMenu','setLoginUser'])
+   ...mapActions(['toggleSideMenu','setLoginUser','logout','deleteLoginUser'])
  }
 };
 </script>

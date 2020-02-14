@@ -13,11 +13,11 @@
     <v-navigation-drawer v-model="$store.state.drawer" absolute temporary>
       <v-list-item>
         <v-list-item-avatar>
-          <v-img src="https://randomuser.me/api/portraits/men/78.jpg"></v-img>
+          <img v-if="photoURL" :src="photoURL">
         </v-list-item-avatar>
 
         <v-list-item-content>
-          <v-list-item-title>東 俊輔</v-list-item-title>
+          <v-list-item-title>{{userName}}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
@@ -39,11 +39,9 @@
 </template>
 
 <script>
-import Login from "@/components/Login.vue";
+import {mapGetters} from 'vuex'
 export default {
-  componnts: {
-    Login
-  },
+ 
   data() {
     return {
       drawer: null,
@@ -51,7 +49,10 @@ export default {
         { title: "login", icon: "Login" ,link:{name:"login"}},
         { title: "News", icon: "News" ,link:{name:"home" }}
       ]
-    };
+    }
+  },
+  computed:{
+    ...mapGetters(['userName','photoURL'])
   }
 };
 </script>
