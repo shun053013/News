@@ -17,7 +17,7 @@
           </div>
         </div>
         <div class="medium-6 columns">
-          <button @click="getPost(section)" class="btn btn-primary">
+          <button @click.prevent="getPost(section)" class="btn btn-primary">
             Retrieve</button
           ><br /><br />
         </div>

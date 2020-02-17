@@ -9,11 +9,12 @@ Vue.use(BootstrapVue);
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
-const router = new VueRouter({
-  mode: 'history',
+
+export default new VueRouter({
+  mode: "history",                                                                                                                                                                                                                                                                                                                                              
   routes: [
     {
-      path: "/",
+      path: "/home",
       name:"home",
       component: News
     },{
@@ -24,4 +25,4 @@ const router = new VueRouter({
   ]
 });
 
-export default router;
+

@@ -78,17 +78,18 @@ export default {
     return {
       posts: [],
       // sections: SECTIONS.split(", "),
-      section: ""
+      section: "home"
     };
   },
   mounted() {
-    axios
-      .get(
-        "https://api.nytimes.com/svc/topstories/v2/home.json?api-key=fnjl2hJ7geAGq5FWQpoCAlRU5KC195Mv"
-      )
-      .then(response => {
-        this.posts = response.data.results;
-      });
+    this.searchByCategory(this.section);
+    // axios
+    //   .get(
+    //     "https://api.nytimes.com/svc/topstories/v2/home.json?api-key=fnjl2hJ7geAGq5FWQpoCAlRU5KC195Mv"
+    //   )
+    //   .then(response => {
+    //     this.posts = response.data.results;
+    //   });
   },
   methods: {
     searchByCategory(section) {

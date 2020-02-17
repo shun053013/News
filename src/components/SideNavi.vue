@@ -47,7 +47,7 @@ export default {
       drawer: null,
       items: [
         { title: "login", icon: "Login" ,link:{name:"login"}},
-        { title: "News", icon: "News" ,link:{name:"home" }}
+        { title: "home", icon: "Home" ,link:{name:"home" }}
       ]
     }
   },
